@@ -1,5 +1,5 @@
 {
-    "name": "wanghan\/someUtils",
+    "name": "wanghanwanghan\/someUtils",
     "description": "2020-06-19 start coding",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "wanghan\\someUtils\\": "src"
+            "wanghanwanghan\\someUtils\\": "src"
         }
     }
 }

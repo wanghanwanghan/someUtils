@@ -3,7 +3,7 @@
 ## 安装
 
 ```shell
-$ composer require wanghan/someUtils
+$ composer require wanghanwanghan/someUtils
 ```
 
 ## 说明

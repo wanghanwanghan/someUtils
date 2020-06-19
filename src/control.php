@@ -1,8 +1,8 @@
 <?php
 
-namespace wanghan\someUtils;
+namespace wanghanwanghan\someUtils;
 
-use wanghan\someUtils\utils\createUuid;
+use wanghanwanghan\someUtils\utils\createUuid;
 
 class control
 {

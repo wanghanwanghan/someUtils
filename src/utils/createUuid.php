@@ -1,6 +1,6 @@
 <?php
 
-namespace wanghan\someUtils\utils;
+namespace wanghanwanghan\someUtils\utils;
 
 class createUuid
 {
