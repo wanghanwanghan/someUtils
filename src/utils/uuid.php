@@ -2,7 +2,7 @@
 
 namespace wanghanwanghan\someUtils\utils;
 
-class createUuid
+class uuid
 {
     //随机uuid
     public static function getUuid($limit=32)
@@ -11,4 +11,7 @@ class createUuid
 
         return $limit >= 32 ? md5(uniqid(mt_rand(),true)) : substr(md5(uniqid(mt_rand(),true)),0,$limit);
     }
+
+
+
 }

@@ -8,7 +8,9 @@
             "email": "minglongoc@me.com"
         }
     ],
-    "require": {},
+    "require": {
+        "ext-mbstring": "*"
+    },
     "autoload": {
         "psr-4": {
             "wanghanwanghan\\someUtils\\": "src"

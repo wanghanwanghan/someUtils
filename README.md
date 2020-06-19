@@ -3,7 +3,7 @@
 ## 安装
 
 ```shell
-$ composer require wanghanwanghan/someUtils
+$ composer require wanghanwanghan/someUtils:dev-master
 ```
 
 ## 说明
