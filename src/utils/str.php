@@ -2,7 +2,7 @@
 
 namespace wanghanwanghan\someUtils\utils;
 
-class string
+class str
 {
     //比较两个字符串是否完全相等
     public static function comparingTwoStrings($str1,$str2,$length='all')

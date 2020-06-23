@@ -3,7 +3,7 @@
 namespace wanghanwanghan\someUtils;
 
 use wanghanwanghan\someUtils\utils\file;
-use wanghanwanghan\someUtils\utils\string;
+use wanghanwanghan\someUtils\utils\str;
 use wanghanwanghan\someUtils\utils\uuid;
 use wanghanwanghan\someUtils\utils\arr;
 
@@ -99,19 +99,19 @@ class control
     //大于0 - str1 长度大于 str2
     public static function comparingTwoStrings($str1,$str2,$length='all')
     {
-        return string::comparingTwoStrings($str1,$str2,$length);
+        return str::comparingTwoStrings($str1,$str2,$length);
     }
 
     //截取中文字符串
     public static function substrChinese($string,$start=0,$length=1)
     {
-        return string::substrChinese($string,$start,$length);
+        return str::substrChinese($string,$start,$length);
     }
 
     //反转中文字符串
     public static function strrevChinese($str)
     {
-        return string::strrevChinese($str);
+        return str::strrevChinese($str);
     }
 
     //随机产生用户名
@@ -199,7 +199,7 @@ class control
     //只含有26个字母或者数字的并且都是半角的字符串，转换成数字，用于hash分表
     public static function string2Number($str)
     {
-        return string::string2Number($str);
+        return str::string2Number($str);
     }
 
     //修改一维或多维数组的键名，参数一：需要修改的数组，参数二：['从什么'=>'改成什么']
@@ -211,7 +211,7 @@ class control
     //为字符串的指定位置添加指定字符
     public static function insertSomething($str,array $offset,$delimiter='-')
     {
-        return string::insertSomething($str,$offset,$delimiter);
+        return str::insertSomething($str,$offset,$delimiter);
     }
 
     //无限极分类
