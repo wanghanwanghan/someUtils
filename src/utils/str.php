@@ -101,6 +101,22 @@ class str
         return join($smatches[0]);
     }
 
+    //中文字符串包含 source源字符串target要判断的是否包含的字符串
+    public static function hasString($source,$target)
+    {
+        preg_match_all("/$target/sim", $source, $strResult, PREG_PATTERN_ORDER);
+
+        return !empty(current($strResult));
+    }
+
+    //向前匹配
+    public static function hasStringFront($source,$target1,$target2)
+    {
+        preg_match_all("/{$target1}(.*)(?={$target2})/sim", $source, $strResult, PREG_PATTERN_ORDER);
+
+        return !empty(current($strResult));
+    }
+
 
 
 

@@ -259,5 +259,40 @@ class control
         return true;
     }
 
+    //中文字符串包含 source源字符串target要判断的是否包含的字符串
+    public function hasString($source,$target)
+    {
+        return str::hasString($source,$target);
+    }
+
+    //向前匹配
+    public function hasStringFront($source,$target1,$target2)
+    {
+        return str::hasStringFront($source,$target1,$target2);
+    }
+
+    //二维数组按照某key排序
+    public function sortArrByKey($array,$key='id',$rule='desc')
+    {
+        return arr::sortArrByKey($array,$key,$rule);
+    }
+
+    //快速排序
+    public function quickSort($arr)
+    {
+        return arr::quickSort($arr);
+    }
+
+    //冒泡排序
+    public function bubbleSort($arr)
+    {
+        return arr::bubbleSort($arr);
+    }
+
+
+
+
+
+
 
 }
