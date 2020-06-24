@@ -266,25 +266,25 @@ class control
     }
 
     //向前匹配
-    public function hasStringFront($source,$target1,$target2)
+    public static function hasStringFront($source,$target1,$target2)
     {
         return str::hasStringFront($source,$target1,$target2);
     }
 
     //二维数组按照某key排序
-    public function sortArrByKey($array,$key='id',$rule='desc')
+    public static function sortArrByKey($array,$key='id',$rule='desc')
     {
         return arr::sortArrByKey($array,$key,$rule);
     }
 
     //快速排序
-    public function quickSort($arr)
+    public static function quickSort($arr)
     {
         return arr::quickSort($arr);
     }
 
     //冒泡排序
-    public function bubbleSort($arr)
+    public static function bubbleSort($arr)
     {
         return arr::bubbleSort($arr);
     }
