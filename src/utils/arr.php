@@ -7,6 +7,8 @@ class arr
     //laravel的
     public static function array_random($array,$number=null)
     {
+        mt_srand();
+
         $requested=is_null($number) ? 1 : $number;
 
         $count=count($array);
