@@ -117,7 +117,25 @@ class str
         return !empty(current($strResult));
     }
 
+    //aes加密
+    public static function aesEncode($str,$salt=__CLASS__,$method=128)
+    {
+        $method === 128 ? $method = 'AES-128-ECB' : $method = 'AES-256-ECB';
 
+        $codeStr=bin2hex(openssl_encrypt($str,$method,$salt,OPENSSL_RAW_DATA));
+
+        return $codeStr;
+    }
+
+    //aes解密
+    public static function aesDecode($str,$salt=__CLASS__,$method=128)
+    {
+        $method === 128 ? $method = 'AES-128-ECB' : $method = 'AES-256-ECB';
+
+        $res=openssl_decrypt(pack("H*",$str),$method,$salt,OPENSSL_RAW_DATA);
+
+        return $res;
+    }
 
 
 

@@ -289,7 +289,17 @@ class control
         return arr::bubbleSort($arr);
     }
 
+    //aes加密
+    public static function aesEncode($str,$salt=__CLASS__,$method=128)
+    {
+        return str::aesEncode($str,$salt,$method);
+    }
 
+    //aes解密
+    public static function aesDecode($str,$salt=__CLASS__,$method=128)
+    {
+        return str::aesDecode($str,$salt,$method);
+    }
 
 
 
