@@ -301,6 +301,12 @@ class control
         return str::aesDecode($str,$salt,$method);
     }
 
+    //写log
+    public static function writeLog($content='',$path='',$type='info',$logFileName='')
+    {
+        return file::writeLog($content,$path,$type,$logFileName);
+    }
+
 
 
 

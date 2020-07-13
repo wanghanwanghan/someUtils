@@ -43,6 +43,35 @@ class file
         return true;
     }
 
+    //写日志
+    public static function writeLog($content='',$path='',$type='info',$logFileName='')
+    {
+        //非字符串的内容处理一下
+        if (!empty($content) && !is_string($content)) $content=json_encode($content);
+
+        $content='['.date('Y-m-d H:i:s',time()).'] ['.strtoupper($type).'] : '.$content.PHP_EOL;
+
+        //传绝对路径
+        is_dir($path) ?: mkdir($path,0755);
+
+        $path.=DIRECTORY_SEPARATOR;
+
+        if (empty($logFileName)) $logFileName='run.log.'.date('Ymd',time());
+
+        $status=true;
+
+        try
+        {
+            file_put_contents($path.$logFileName,$content,FILE_APPEND|LOCK_EX);
+
+        }catch (\Exception $e)
+        {
+            $status=false;
+        }
+
+        return $status;
+    }
+
 
 
 }
