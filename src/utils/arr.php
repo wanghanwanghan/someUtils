@@ -83,6 +83,16 @@ class arr
         return $array;
     }
 
+    //二维数组按照某key排序
+    public static function sortArrByKeyNew($array,$key='id',$rule='desc')
+    {
+        strtolower($rule) === 'asc' ? $rule = 'SORT_ASC' : $rule = 'SORT_DESC';
+
+        array_multisort(array_column($array,$key),constant($rule),$array);
+
+        return $array;
+    }
+
     //快速排序
     public static function quickSort($array)
     {

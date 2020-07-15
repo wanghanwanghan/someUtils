@@ -272,8 +272,13 @@ class control
     }
 
     //二维数组按照某key排序
-    public static function sortArrByKey($array,$key='id',$rule='desc')
+    public static function sortArrByKey($array,$key='id',$rule='desc',$useNew=false)
     {
+        if ($useNew)
+        {
+            return arr::sortArrByKeyNew($array,$key,$rule);
+        }
+
         return arr::sortArrByKey($array,$key,$rule);
     }
 
@@ -306,8 +311,6 @@ class control
     {
         return file::writeLog($content,$path,$type,$logFileName);
     }
-
-
 
 
 
