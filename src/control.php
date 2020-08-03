@@ -3,6 +3,8 @@
 namespace wanghanwanghan\someUtils;
 
 use wanghanwanghan\someUtils\utils\file;
+use wanghanwanghan\someUtils\utils\img;
+use wanghanwanghan\someUtils\utils\num;
 use wanghanwanghan\someUtils\utils\str;
 use wanghanwanghan\someUtils\utils\uuid;
 use wanghanwanghan\someUtils\utils\arr;
@@ -311,6 +313,19 @@ class control
     {
         return file::writeLog($content,$path,$type,$logFileName);
     }
+
+    //比例计算图片宽高
+    public static function calculateDimensions($width,$height,$maxWidth,$maxHeight)
+    {
+        return img::calculateDimensions($width,$height,$maxWidth,$maxHeight);
+    }
+
+    //产生随机数
+    public static function randNum($length=18)
+    {
+        return num::randNum($length);
+    }
+
 
 
 
