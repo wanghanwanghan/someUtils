@@ -137,6 +137,36 @@ class str
         return $res;
     }
 
+    //字符串转utf8
+    public static function str2Utf8($str,$addType=[])
+    {
+        $type = ['ASCII', 'UTF-8', 'GB2312', 'GBK', 'BIG5'];
+
+        if (!empty($addType))
+        {
+            foreach ($addType as $one)
+            {
+                array_push($type,$one);
+            }
+        }
+
+        $type = mb_detect_encoding($str, $type);
+
+        if ($type == 'UTF-8')
+        {
+            return $str;
+        }else
+        {
+            return mb_convert_encoding($str, 'UTF-8', $type);
+        }
+    }
+
+
+
+
+
+
+
 
 
 }

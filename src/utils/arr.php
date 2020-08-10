@@ -98,7 +98,7 @@ class arr
     {
         if (count($array)<=1) return $array;
 
-        $key=$array[0];
+        $key=current($array);
 
         $left_arr=$right_arr=[];
 

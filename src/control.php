@@ -3,6 +3,7 @@
 namespace wanghanwanghan\someUtils;
 
 use wanghanwanghan\someUtils\utils\file;
+use wanghanwanghan\someUtils\utils\idCard;
 use wanghanwanghan\someUtils\utils\img;
 use wanghanwanghan\someUtils\utils\num;
 use wanghanwanghan\someUtils\utils\str;
@@ -326,7 +327,22 @@ class control
         return num::randNum($length);
     }
 
+    //获取身份证信息
+    public static function getIdCardInfo($idCardNum)
+    {
+        return (new idCard($idCardNum))->getInfo();
+    }
 
+    //字符串转化utf8
+    public static function str2Utf8($str,$addType=[])
+    {
+        return str::str2Utf8($str,$addType);
+    }
 
+    //图片转base64
+    public static function img2Base64($imgPath)
+    {
+        return img::img2Base64($imgPath);
+    }
 
 }
