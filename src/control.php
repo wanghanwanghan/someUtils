@@ -340,9 +340,9 @@ class control
     }
 
     //图片转base64
-    public static function img2Base64($imgPath)
+    public static function img2Base64($imgPath,$needPrefix=false)
     {
-        return img::img2Base64($imgPath);
+        return img::img2Base64($imgPath,$needPrefix);
     }
 
 }

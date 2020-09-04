@@ -43,7 +43,7 @@ class img
     }
 
     //图片转base64编码
-    public static function img2Base64($img_file)
+    public static function img2Base64($img_file,$needPrefix=false)
     {
         $img_base64 = '';
 
@@ -57,8 +57,8 @@ class img
 
             if ($fp)
             {
-                $filesize = filesize($app_img_file);
-                $content = fread($fp, $filesize);
+                $fileSize = filesize($app_img_file);
+                $content = fread($fp, $fileSize);
                 $file_content = chunk_split(base64_encode($content)); // base64编码
                 switch ($img_info[2])
                 {   //判读图片类型
@@ -70,8 +70,11 @@ class img
                         break;
                 }
 
-                $img_base64 = 'data:image/' . $img_type . ';base64,' . $file_content;//合成图片的base64编码
+                $needPrefix ?
+                    $img_base64 = 'data:image/' . $img_type . ';base64,' . $file_content :
+                    $img_base64 = $file_content;
             }
+
             fclose($fp);
         }
 
