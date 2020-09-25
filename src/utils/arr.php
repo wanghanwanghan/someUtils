@@ -136,8 +136,44 @@ class arr
         return $array;
     }
 
+    //替代range函数，因为太占内存
+    public static function xRange($start,$stop,$step)
+    {
+        //需要用foreach迭代
+        //$res=xRange(1,20);
+        //foreach ($res as $num)
+        //{
+        //    echo $num.PHP_EOL;
+        //}
 
+        for ($i=$start;$i<=$stop;$i+=$step)
+        {
+            yield $i;
+        }
+    }
 
+    //多维数组变一维
+    public static function array_flatten($array,$depth=INF)
+    {
+        $result = [];
+
+        foreach ($array as $item)
+        {
+            if (!is_array($item))
+            {
+                $result[] = $item;
+
+            }elseif ($depth === 1)
+            {
+                $result = array_merge($result, array_values($item));
+            }else
+            {
+                $result = array_merge($result, static::array_flatten($item, $depth - 1));
+            }
+        }
+
+        return $result;
+    }
 
 
 

@@ -345,4 +345,21 @@ class control
         return img::img2Base64($imgPath,$needPrefix);
     }
 
+    //代替range
+    public static function xRange($start,$stop,$step=1)
+    {
+        return arr::xRange($start,$stop,$step);
+    }
+
+    //
+    public static function array_flatten($arr,$deep=INF)
+    {
+        return arr::array_flatten($arr,$deep);
+    }
+
+
+
+
+
+
 }
