@@ -263,7 +263,7 @@ class control
     }
 
     //中文字符串包含 source源字符串target要判断的是否包含的字符串
-    public function hasString($source,$target)
+    public static function hasString($source,$target)
     {
         return str::hasString($source,$target);
     }

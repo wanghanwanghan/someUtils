@@ -155,6 +155,8 @@ class arr
     //多维数组变一维
     public static function array_flatten($array,$depth=INF)
     {
+        if (!is_array($array)) return null;
+
         $result = [];
 
         foreach ($array as $item)
