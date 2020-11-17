@@ -357,6 +357,15 @@ class control
         return arr::array_flatten($arr,$deep);
     }
 
+    public static function head($arr)
+    {
+        return arr::head($arr);
+    }
+
+    public static function last($arr)
+    {
+        return arr::last($arr);
+    }
 
 
 

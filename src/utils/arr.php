@@ -177,6 +177,17 @@ class arr
         return $result;
     }
 
+    //laravel head
+    public static function head($arr)
+    {
+        return reset($arr);
+    }
+
+    //laravel last
+    public static function last($arr)
+    {
+        return end($arr);
+    }
 
 
 
