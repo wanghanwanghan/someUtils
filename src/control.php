@@ -211,6 +211,12 @@ class control
         return arr::changeArrKey($arr,$target);
     }
 
+    //
+    public static function removeArrKey($arr,$example=['created_at','updated_at'])
+    {
+        return arr::removeArrKey($arr,$example);
+    }
+
     //为字符串的指定位置添加指定字符
     public static function insertSomething($str,array $offset,$delimiter='-')
     {
@@ -366,7 +372,6 @@ class control
     {
         return arr::last($arr);
     }
-
 
 
 

@@ -63,6 +63,27 @@ class arr
         return $res;
     }
 
+    //删除一维或多维数组的元素
+    public static function removeArrKey($arr,$example=['created_at','updated_at'])
+    {
+        $res = [];
+
+        foreach ($arr as $key => $value)
+        {
+            if (in_array($key,$example)) continue;
+
+            if (is_array($value))
+            {
+                $res[$key] = self::removeArrKey($value,$example);
+            }else
+            {
+                $res[$key] = $value;
+            }
+        }
+
+        return $res;
+    }
+
     //二维数组按照某key排序
     public static function sortArrByKey($array,$key='id',$rule='desc')
     {
