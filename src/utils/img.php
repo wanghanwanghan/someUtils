@@ -5,7 +5,7 @@ namespace wanghanwanghan\someUtils\utils;
 class img
 {
     //比例计算图片宽高
-    public static function calculateDimensions($width,$height,$maxWidth,$maxHeight)
+    static function calculateDimensions($width,$height,$maxWidth,$maxHeight)
     {
         if ($width != $height)
         {
@@ -43,7 +43,7 @@ class img
     }
 
     //图片转base64编码
-    public static function img2Base64($img_file,$needPrefix=false)
+    static function img2Base64($img_file,$needPrefix=false)
     {
         $img_base64 = '';
 

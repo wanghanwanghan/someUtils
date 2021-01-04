@@ -109,7 +109,8 @@ class arr
     {
         strtolower($rule) === 'asc' ? $rule = 'SORT_ASC' : $rule = 'SORT_DESC';
 
-        array_multisort(array_column($array,$key),constant($rule),$array);
+        $array_column = array_column($array, $key);
+        array_multisort($array_column,constant($rule),$array);
 
         return $array;
     }

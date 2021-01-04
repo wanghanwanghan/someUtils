@@ -19,19 +19,19 @@ class control
     private function __construct(){}
     private function __clone(){}
 
-    public static function install()
+    static function install()
     {
         return 'hello world';
     }
 
     //uuid
-    public static function getUuid($limit=32)
+    static function getUuid($limit=32)
     {
         return uuid::getUuid($limit);
     }
 
     //是否移动端
-    public static function isMobile()
+    static function isMobile()
     {
         // 如果有HTTP_X_WAP_PROFILE则一定是移动设备
         if (isset($_SERVER['HTTP_X_WAP_PROFILE'])) return true;
@@ -100,25 +100,25 @@ class control
     //等于0 - 两个字符串相等
     //小于0 - str1 长度小于 str2
     //大于0 - str1 长度大于 str2
-    public static function comparingTwoStrings($str1,$str2,$length='all')
+    static function comparingTwoStrings($str1,$str2,$length='all')
     {
         return str::comparingTwoStrings($str1,$str2,$length);
     }
 
     //截取中文字符串
-    public static function substrChinese($string,$start=0,$length=1)
+    static function substrChinese($string,$start=0,$length=1)
     {
         return str::substrChinese($string,$start,$length);
     }
 
     //反转中文字符串
-    public static function strrevChinese($str)
+    static function strrevChinese($str)
     {
         return str::strrevChinese($str);
     }
 
     //随机产生用户名
-    public static function randomUserName()
+    static function randomUserName()
     {
         if (time()%2)
         {
@@ -194,37 +194,37 @@ class control
     }
 
     //删除文件夹下$n分钟前创建的文件
-    public static function delFileByCtime($dir,$n='')
+    static function delFileByCtime($dir,$n='')
     {
         return file::delFileByCtime($dir,$n);
     }
 
     //只含有26个字母或者数字的并且都是半角的字符串，转换成数字，用于hash分表
-    public static function string2Number($str)
+    static function string2Number($str)
     {
         return str::string2Number($str);
     }
 
     //修改一维或多维数组的键名，参数一：需要修改的数组，参数二：['从什么'=>'改成什么']
-    public static function changeArrKey($arr,$target)
+    static function changeArrKey($arr,$target)
     {
         return arr::changeArrKey($arr,$target);
     }
 
     //
-    public static function removeArrKey($arr,$example=['created_at','updated_at'])
+    static function removeArrKey($arr,$example=['created_at','updated_at'])
     {
         return arr::removeArrKey($arr,$example);
     }
 
     //为字符串的指定位置添加指定字符
-    public static function insertSomething($str,array $offset,$delimiter='-')
+    static function insertSomething($str,array $offset,$delimiter='-')
     {
         return str::insertSomething($str,$offset,$delimiter);
     }
 
     //无限极分类
-    public static function traverseMenu($menus,&$result,$pid=0)
+    static function traverseMenu($menus,&$result,$pid=0)
     {
         //数据样子
         //$menus = [
@@ -269,19 +269,19 @@ class control
     }
 
     //中文字符串包含 source源字符串target要判断的是否包含的字符串
-    public static function hasString($source,$target)
+    static function hasString($source,$target)
     {
         return str::hasString($source,$target);
     }
 
     //向前匹配
-    public static function hasStringFront($source,$target1,$target2)
+    static function hasStringFront($source,$target1,$target2)
     {
         return str::hasStringFront($source,$target1,$target2);
     }
 
     //二维数组按照某key排序
-    public static function sortArrByKey($array,$key='id',$rule='desc',$useNew=false)
+    static function sortArrByKey($array,$key='id',$rule='desc',$useNew=false)
     {
         if ($useNew)
         {
@@ -292,83 +292,83 @@ class control
     }
 
     //快速排序
-    public static function quickSort($arr)
+    static function quickSort($arr)
     {
         return arr::quickSort($arr);
     }
 
     //冒泡排序
-    public static function bubbleSort($arr)
+    static function bubbleSort($arr)
     {
         return arr::bubbleSort($arr);
     }
 
     //aes加密
-    public static function aesEncode($str,$salt=__CLASS__,$method=128)
+    static function aesEncode($str,$salt=__CLASS__,$method=128)
     {
         return str::aesEncode($str,$salt,$method);
     }
 
     //aes解密
-    public static function aesDecode($str,$salt=__CLASS__,$method=128)
+    static function aesDecode($str,$salt=__CLASS__,$method=128)
     {
         return str::aesDecode($str,$salt,$method);
     }
 
     //写log
-    public static function writeLog($content='',$path='',$type='info',$logFileName='')
+    static function writeLog($content='',$path='',$type='info',$logFileName='')
     {
         return file::writeLog($content,$path,$type,$logFileName);
     }
 
     //比例计算图片宽高
-    public static function calculateDimensions($width,$height,$maxWidth,$maxHeight)
+    static function calculateDimensions($width,$height,$maxWidth,$maxHeight)
     {
         return img::calculateDimensions($width,$height,$maxWidth,$maxHeight);
     }
 
     //产生随机数
-    public static function randNum($length=18)
+    static function randNum($length=18)
     {
         return num::randNum($length);
     }
 
     //获取身份证信息
-    public static function getIdCardInfo($idCardNum)
+    static function getIdCardInfo($idCardNum)
     {
         return (new idCard($idCardNum))->getInfo();
     }
 
     //字符串转化utf8
-    public static function str2Utf8($str,$addType=[])
+    static function str2Utf8($str,$addType=[])
     {
         return str::str2Utf8($str,$addType);
     }
 
     //图片转base64
-    public static function img2Base64($imgPath,$needPrefix=false)
+    static function img2Base64($imgPath,$needPrefix=false)
     {
         return img::img2Base64($imgPath,$needPrefix);
     }
 
     //代替range
-    public static function xRange($start,$stop,$step=1)
+    static function xRange($start,$stop,$step=1)
     {
         return arr::xRange($start,$stop,$step);
     }
 
     //
-    public static function array_flatten($arr,$deep=INF)
+    static function array_flatten($arr,$deep=INF)
     {
         return arr::array_flatten($arr,$deep);
     }
 
-    public static function head($arr)
+    static function head($arr)
     {
         return arr::head($arr);
     }
 
-    public static function last($arr)
+    static function last($arr)
     {
         return arr::last($arr);
     }
