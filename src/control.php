@@ -373,6 +373,10 @@ class control
         return arr::last($arr);
     }
 
+    static function toChineseNumber($num)
+    {
+        return num::toChineseNumber($num);
+    }
 
 
 
