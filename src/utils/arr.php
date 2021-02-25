@@ -60,7 +60,7 @@ class arr
 
         foreach ($arr as $key => $value) {
             if (is_array($value)) {
-                $arr[$key] = self::changeArrVal($value, $saki, $moto);
+                $arr[$key] = self::changeArrVal($value, $saki, $moto, $useTrim);
             } else {
                 !(is_string($value) && $useTrim) ?: $value = trim($value);
                 if (in_array($value, $saki, true))
