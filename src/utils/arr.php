@@ -62,9 +62,14 @@ class arr
             if (is_array($value)) {
                 $arr[$key] = self::changeArrVal($value, $saki, $moto, $useTrim);
             } else {
-                !(is_string($value) && $useTrim) ?: $value = trim($value);
-                if (in_array($value, $saki, true))
-                    $arr[$key] = $moto;
+                if (is_string($value)) {
+                    $tmp = [];
+                    foreach ($saki as $val) {
+                        !is_string($val) ?: array_push($tmp, $val);
+                    }
+                    empty($tmp) ?: $arr[$key] = str_replace($tmp, $moto, $useTrim ? trim($value) : $value);
+                }
+                if (in_array($value, $saki, true)) $arr[$key] = $moto;
             }
         }
 
