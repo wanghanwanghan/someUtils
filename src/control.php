@@ -380,5 +380,15 @@ class control
         return num::toChineseNumber($num);
     }
 
+    static function numToStrForId($num): ?string
+    {
+        return num::numToStringForId($num);
+    }
+
+    static function strToNumForId($str): int
+    {
+        return num::stringToNumForId($str);
+    }
+
 
 }

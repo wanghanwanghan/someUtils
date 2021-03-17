@@ -4,6 +4,15 @@ namespace wanghanwanghan\someUtils\utils;
 
 class num
 {
+    static $alphabet = [
+        'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e',
+        'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j',
+        'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o',
+        'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't',
+        'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y',
+        'Z', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+    ];
+
     //产生随机数
     static function randNum($length = 3)
     {
@@ -76,6 +85,46 @@ class num
         } else {
             return $c . "整";
         }
+    }
+
+    //数字转字符串 用于隐藏id
+    static function numToStringForId($num): ?string
+    {
+        if ($num > PHP_INT_MAX || $num < 0) return null;
+        $max = count(self::$alphabet) - 1;
+        $str = '';
+
+        if ($num <= $max) {
+            return self::$alphabet[$num];
+        } else if ($num > $max) {
+            $tmp1 = $num + 1;
+            while ($tmp1 > 0) {
+                $tmp2 = ($tmp1 - 1) % ($max + 1);
+                if ($tmp2 < 0) {
+                    $tmp2 = $tmp2 + ($max + 1);
+                }
+                $str = self::$alphabet[$tmp2] . $str;
+                $tmp1 = floor((($tmp1 - $tmp2) / ($max + 1)));
+            }
+        }
+
+        return $str;
+    }
+
+    //字符串转数字 用于解密id
+    static function stringToNumForId($str): int
+    {
+        $arr = array_flip(self::$alphabet);
+        $max = count(self::$alphabet);
+        $num = -1;
+
+        $len = strlen($str);
+
+        for ($i = 0; $i < $len; $i++) {
+            $num += ($arr[$str[$i]] + 1) * pow($max, ($len - $i - 1));
+        }
+
+        return $num;
     }
 
 
