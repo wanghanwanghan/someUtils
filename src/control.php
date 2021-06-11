@@ -380,14 +380,15 @@ class control
         return num::toChineseNumber($num);
     }
 
-    static function numToStrForId($num): ?string
+    static function numToStrForId($num, $version = 1): ?string
     {
-        return num::numToStringForId($num);
+
+        return $version === 1 ? num::numToStringForId($num) : num::toAlpha($num);
     }
 
-    static function strToNumForId($str): int
+    static function strToNumForId($str, $version = 1): int
     {
-        return num::stringToNumForId($str);
+        return $version === 1 ? num::stringToNumForId($str) : num::toNum($str);
     }
 
 
