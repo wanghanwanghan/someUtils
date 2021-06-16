@@ -392,38 +392,11 @@ class control
 
     static function rsaEncrypt(string $str = '', string $key = '', string $use = 'pub', string $mark = '_'): ?string
     {
-        if (empty($key)) {
-            $key = '-----BEGIN PUBLIC KEY-----
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDmRhaxoZLa+oZx+cdVuBk3wiJw
-f7ydvIV22fZrFBl7HJ9RphQ877rIIsQ9J30wQFRKUVOHPZvIc/EOLnjKjqNLdU1I
-SFM34jq+1vOzxo9jeG+7vnCNdUnQorR80d2xq39QyhYOtrgl18ccnJ5mfpG2Cwiv
-o+g+6Z2RkopoPbMI0QIDAQAB
------END PUBLIC KEY-----';
-        }
-
         return str::rsaEncrypt($str, $key, $use, $mark);
     }
 
     static function rsaDecrypt(string $str = '', string $key = '', string $use = 'pri', string $mark = '_'): ?string
     {
-        if (empty($key)) {
-            $key = '-----BEGIN RSA PRIVATE KEY-----
-MIICXAIBAAKBgQDmRhaxoZLa+oZx+cdVuBk3wiJwf7ydvIV22fZrFBl7HJ9RphQ8
-77rIIsQ9J30wQFRKUVOHPZvIc/EOLnjKjqNLdU1ISFM34jq+1vOzxo9jeG+7vnCN
-dUnQorR80d2xq39QyhYOtrgl18ccnJ5mfpG2Cwivo+g+6Z2RkopoPbMI0QIDAQAB
-AoGAN7Gke/5m6TEWEtt1b4FJEiARWdG/QgxOYGZLr+7K0eikjOgk9W8K5yxnd54F
-LIYmjNn6IJfRRYxrNUGeo+kXS6um0qTFUsEXuasLaABzezIjRNXyllLHZbaoIKRO
-ywtaFZTn/AO7KX9hMKPIe06WzoODMlvrrl85exZzeE5+eVUCQQDz3kiw1gr7iFxF
-PpeYhkAx9U7HxxU47+vAlan0e5DqqQ07+lxo2vnD7qW34AP/b865k+56fRZok/M9
-XlfdknbNAkEA8bqs9JX+mDR4ZocJGaI3IniNdpWh3cDRez9Rag57Z5DxOzjSSoSW
-D72CODhuBNqe+nDmkJek/q0Hoc1Q5uhyFQJBANgjid+ZRZCb0dPZXvji++CLX3B3
-BVs6YYOF4mT6Y31nqYAgLGkOs1GxoRTwKfrqOJmIAFR1qzey8WHRzSRnXH0CQBFv
-bIArvXRO/IwwmzhtGdrzpQhznHw5JyLjm0SyDLaYnr2tyIU1cPlrqtPRRiY1epgH
-wqmVNoJkCpPiEj7Fb00CQHYVwCtrj48BOsjEHfGZn2OqfhBFeREVK08UF1UnpRMB
-arZ/yMZxHOe6TzxuKsnsNd8e6MzKNbtZ5plHemofcuQ=
------END RSA PRIVATE KEY-----';
-        }
-
         return str::rsaDecrypt($str, $key, $use, $mark);
     }
 
