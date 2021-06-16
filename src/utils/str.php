@@ -122,6 +122,59 @@ class str
         return openssl_decrypt(pack("H*", $str), $method, $salt, OPENSSL_RAW_DATA);
     }
 
+    static function rsaEncrypt(string $str = '', string $key = '', string $use = 'pub', string $mark = '_'): ?string
+    {
+        strtolower($use) === 'pub' ? $key = openssl_pkey_get_public($key) : $key = openssl_pkey_get_private($key);
+
+        if ($key === false) return null;
+
+        if (strlen($str) > 117) {
+            $res = '';
+            foreach (str_split($str, 117) as $chunk) {
+                strtolower($use) === 'pub' ?
+                    $en_info = openssl_public_encrypt($chunk, $en, $key) :
+                    $en_info = openssl_private_encrypt($chunk, $en, $key);
+                if ($en_info === false) return null;
+                $res .= base64_encode($en) . $mark;
+            }
+        } else {
+            strtolower($use) === 'pub' ?
+                $en_info = openssl_public_encrypt($str, $en, $key) :
+                $en_info = openssl_private_encrypt($str, $en, $key);
+            if ($en_info === false) return null;
+            $res = base64_encode($en);
+        }
+
+        return trim($res, $mark);
+    }
+
+    static function rsaDecrypt(string $str = '', string $key = '', string $use = 'pri', string $mark = '_'): ?string
+    {
+        strtolower($use) === 'pub' ? $key = openssl_pkey_get_public($key) : $key = openssl_pkey_get_private($key);
+
+        if ($key === false) return null;
+
+        if (strpos($str, $mark) !== false) {
+            $res = '';
+            foreach (explode($mark, $str) as $chunk) {
+                $chunk = base64_decode($chunk);
+                strtolower($use) === 'pub' ?
+                    $de_info = openssl_public_decrypt($chunk, $de, $key) :
+                    $de_info = openssl_private_decrypt($chunk, $de, $key);
+                if ($de_info === false) return null;
+                $res .= $de;
+            }
+        } else {
+            $str = base64_decode($str);
+            strtolower($use) === 'pub' ?
+                $de_info = openssl_public_decrypt($str, $res, $key) :
+                $de_info = openssl_private_decrypt($str, $res, $key);
+            if ($de_info === false) return null;
+        }
+
+        return $res;
+    }
+
     //字符串转utf8
     static function str2Utf8($str, $addType = [])
     {
