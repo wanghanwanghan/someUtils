@@ -194,9 +194,9 @@ class control
     }
 
     //删除文件夹下$n分钟前创建的文件
-    static function delFileByCtime($dir, $n = '')
+    static function delFileByCtime($dir, $n = '', $ignore = [])
     {
-        return file::delFileByCtime($dir, $n);
+        return file::delFileByCtime($dir, $n, $ignore);
     }
 
     //只含有26个字母或者数字的并且都是半角的字符串，转换成数字，用于hash分表
@@ -398,6 +398,11 @@ class control
     static function rsaDecrypt(string $str = '', string $key = '', string $use = 'pri', string $mark = '_'): ?string
     {
         return str::rsaDecrypt($str, $key, $use, $mark);
+    }
+
+    static function createRsa(string $storePath, array $conf = []): ?array
+    {
+        return str::createRsa($storePath, $conf);
     }
 
 }

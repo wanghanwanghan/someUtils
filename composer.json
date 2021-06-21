@@ -13,6 +13,7 @@
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-json": "*",
+        "ext-gd": "*",
         "amenadiel/jpgraph": "^4.0"
     },
     "autoload": {

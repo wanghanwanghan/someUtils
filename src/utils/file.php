@@ -5,20 +5,21 @@ namespace wanghanwanghan\someUtils\utils;
 class file
 {
     //删除文件夹下$n分钟前创建的文件
-    static function delFileByCtime($dir, $n = '')
+    static function delFileByCtime($dir, $n = '', $ignore = [])
     {
+        $ignore = array_merge($ignore, ['.', '..', '.gitignore']);
+
         if (is_dir($dir) && !empty($n)) {
             if ($dh = opendir($dir)) {
                 while (false !== ($file = readdir($dh))) {
-                    if ($file != "." && $file != "..") {
+                    if (!in_array($file, $ignore, true)) {
                         $fullpath = $dir . DIRECTORY_SEPARATOR . $file;
-
                         if (is_dir($fullpath)) {
                             if (count(scandir($fullpath)) == 2 && $file != date('Y-m-d')) {
                                 //目录为空,=2是因为.和..存在
                                 rmdir($fullpath); // 删除空目录
                             } else {
-                                self::delFileByCtime($fullpath, $n); //不为空继续判断文件夹中文件
+                                self::delFileByCtime($fullpath, $n, $ignore); //不为空继续判断文件夹中文件
                             }
                         } else {
                             $filedate = filemtime($fullpath); //获取文件创建时间

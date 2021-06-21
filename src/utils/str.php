@@ -2,6 +2,8 @@
 
 namespace wanghanwanghan\someUtils\utils;
 
+use wanghanwanghan\someUtils\control;
+
 class str
 {
     //比较两个字符串是否完全相等
@@ -186,6 +188,44 @@ class str
         } else {
             return mb_convert_encoding($str, 'UTF-8', $type);
         }
+    }
+
+    //生成RSA公钥私钥
+    static function createRsa(string $storePath, array $conf = []): ?array
+    {
+        $storePath = rtrim($storePath, DIRECTORY_SEPARATOR);
+        $storePath .= DIRECTORY_SEPARATOR;
+
+        //传绝对路径
+        is_dir($storePath) || mkdir($storePath, 0755);
+
+        !empty($conf['config']) ?: $conf['config'] = '/usr/lib/ssl/openssl.cnf';
+        //openssl_get_md_methods() 的返回值是可以使用的加密方法列表
+        !empty($conf['digest_alg']) ?: $conf['digest_alg'] = 'SHA512';
+        //指定应该使用多少位来生成私钥
+        !empty($conf['private_key_bits']) ?: $conf['private_key_bits'] = '4096';
+        //OPENSSL_KEYTYPE_DSA OPENSSL_KEYTYPE_DH OPENSSL_KEYTYPE_RSA OPENSSL_KEYTYPE_EC
+        !empty($conf['private_key_type']) ?: $conf['private_key_type'] = OPENSSL_KEYTYPE_RSA;
+
+        $resource = openssl_pkey_new($conf);
+
+        //生成私钥
+        openssl_pkey_export($resource, $privateKey, null, $conf);
+
+        //生成公钥
+        $details = openssl_pkey_get_details($resource);
+
+        $publicKey = $details['key'];
+
+        $filename = control::getUuid(8) . '.pem';
+
+        file_put_contents($storePath . 'rsa_pri_' . $filename, $privateKey, LOCK_EX);
+        file_put_contents($storePath . 'rsa_pub_' . $filename, $publicKey, LOCK_EX);
+
+        return [
+            'pub' => 'rsa_pub_' . $filename,
+            'pri' => 'rsa_pri_' . $filename,
+        ];
     }
 
 
