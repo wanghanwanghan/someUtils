@@ -209,11 +209,17 @@ class str
 
         $resource = openssl_pkey_new($conf);
 
+        if ($resource === false) return null;
+
         //生成私钥
-        openssl_pkey_export($resource, $privateKey, null, $conf);
+        $check = openssl_pkey_export($resource, $privateKey, null, $conf);
+
+        if ($check === false) return null;
 
         //生成公钥
         $details = openssl_pkey_get_details($resource);
+
+        if ($details === false) return null;
 
         $publicKey = $details['key'];
 
