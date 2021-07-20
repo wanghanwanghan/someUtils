@@ -405,4 +405,10 @@ class control
         return str::createRsa($storePath, $conf);
     }
 
+    static function inArea(string $lat, string $lng, array $area): bool
+    {
+        return img::inArea($lat, $lng, $area);
+    }
+
+
 }

@@ -72,5 +72,38 @@ class img
         return $img_base64; //返回图片的base64
     }
 
+    //点是否在多边形内
+    static function inArea(string $lat, string $lng, array $area): bool
+    {
+        $aLon = sprintf('%.6f', $lng) - 0;
+        $aLat = sprintf('%.6f', $lat) - 0;
+
+        $iSum = 0;
+
+        $iCount = count($area);
+
+        foreach ($area as $key => $row) {
+            $pLon1 = $row[0];
+            $pLat1 = $row[1];
+            if ($key === $iCount - 1) {
+                $pLon2 = $area[0][0];
+                $pLat2 = $area[0][1];
+            } else {
+                $pLon2 = $area[$key + 1][0];
+                $pLat2 = $area[$key + 1][1];
+            }
+            if ((($aLat >= $pLat1) && ($aLat < $pLat2)) || (($aLat >= $pLat2) && ($aLat < $pLat1))) {
+                if (abs($pLat1 - $pLat2) > 0) {
+                    $pLon = $pLon1 - (($pLon1 - $pLon2) * ($pLat1 - $aLat)) / ($pLat1 - $pLat2);
+                    if ($pLon < $aLon) {
+                        $iSum += 1;
+                    }
+                }
+            }
+        }
+
+        return $iSum % 2 !== 0;
+    }
+
 
 }
