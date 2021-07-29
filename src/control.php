@@ -410,5 +410,10 @@ class control
         return img::inArea($lat, $lng, $area);
     }
 
+    static function checkBankCardNo(string $card): bool
+    {
+        return num::luhn($card);
+    }
+
 
 }

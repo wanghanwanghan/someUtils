@@ -127,4 +127,30 @@ class num
         return $num;
     }
 
+    //luhn 算法
+    static function luhn($card): bool
+    {
+        $len = strlen($card);
+        $all = [];
+        $sum_odd = 0;
+        $sum_even = 0;
+        for ($i = 0; $i < $len; $i++) {
+            $all[] = substr($card, $len - $i - 1, 1);
+        }
+        //all 里的偶数key都是我们要相加的奇数位
+        for ($k = 0; $k < $len; $k++) {
+            if ($k % 2 == 0) {
+                $sum_odd += $all[$k];
+            } else {
+                //奇数key都是要相加的偶数和
+                if ($all[$k] * 2 >= 10) {
+                    $sum_even += $all[$k] * 2 - 9;
+                } else {
+                    $sum_even += $all[$k] * 2;
+                }
+            }
+        }
+        $total = $sum_odd + $sum_even;
+        return !!($total % 10 === 0);
+    }
 }
