@@ -61,4 +61,29 @@ class file
         return $status;
     }
 
+    //一行一行的读文件内容
+    static function readFile($file, $page = 1, $limit = 20): ?array
+    {
+        if (!is_file($file)) {
+            return null;
+        }
+
+        $handle = new \SplFileObject($file, 'r');
+
+        $offset = ($page - 1) * $limit;
+
+        $handle->seek($offset);
+
+        $res = [];
+
+        for ($i = 0; $i < $limit; $i++) {
+            $current = $handle->current();
+            if (!$current) break;
+            $res[] = $current;
+            $handle->next();
+        }
+
+        return $res;
+    }
+
 }

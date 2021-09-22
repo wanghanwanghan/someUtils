@@ -206,4 +206,25 @@ class arr
         return end($arr);
     }
 
+    //二分查找
+    static function binarySearch($find, $arr, $startIndex, $indexTotal)
+    {
+        $middleKey = ($startIndex + $indexTotal) / 2;
+
+        if ($middleKey <= $startIndex || $middleKey >= $indexTotal) {
+            return null;
+        }
+
+        if ($find === $arr[$middleKey]) {
+            return $arr[$middleKey];
+        }
+
+        if ($find > $arr[$middleKey]) {
+            return arr::binarySearch($find, $arr, $middleKey, $indexTotal);
+        } else {
+            return arr::binarySearch($find, $arr, $startIndex, $middleKey);
+        }
+    }
+
+
 }

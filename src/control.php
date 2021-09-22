@@ -415,5 +415,16 @@ class control
         return num::luhn($card);
     }
 
+    //一行一行的读文件内容
+    static function readFile($file, $page = 1, $limit = 20): ?array
+    {
+        return file::readFile($file, $page, $limit);
+    }
+
+    //二分查找
+    static function binarySearch($find, $arr, $startIndex, $indexTotal)
+    {
+        return arr::binarySearch($find, $arr, $startIndex, $indexTotal);
+    }
 
 }
