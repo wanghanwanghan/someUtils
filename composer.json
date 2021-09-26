@@ -14,7 +14,8 @@
         "ext-openssl": "*",
         "ext-json": "*",
         "ext-gd": "*",
-        "amenadiel/jpgraph": "^4.0"
+        "amenadiel/jpgraph": "^4.0",
+        "illuminate/database": "^7.20"
     },
     "autoload": {
         "psr-4": {
