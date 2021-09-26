@@ -37,7 +37,6 @@ $info = $DB->connection('ent')->table('invoice_1')->get()->toArray();
 
 foreach ($info as $one) {
     $one = json_decode(json_encode($one), true);
-
     if ($one['fpdm'] === '011001700107' && $one['fphm'] === '29109331') {
         $str = '01100170010729109331';
         $j = 0;
@@ -45,16 +44,8 @@ foreach ($info as $one) {
             is_numeric($str[$i]) ? $j += $str[$i] : $j += ord($str[$i]);
         }
         $suffix = $j % 10;
-
-        var_dump($suffix);
-
     }
-
-
 }
-
-
-
 
 
 
