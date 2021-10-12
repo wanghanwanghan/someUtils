@@ -271,6 +271,35 @@ class control
         return true;
     }
 
+    //无限级分类
+    static function traverseMenuNew($menus, &$result, $pid = 0, $ext = []): bool
+    {
+        //自定义字段
+        $id_field = $ext['id_field'] ?? 'id';
+        $pid_field = $ext['pid_field'] ?? 'pid';
+        $children_field = $ext['children_field'] ?? 'children';
+        //保留字段
+        $save_field = $ext['save_field'] ?? [];
+
+        foreach ($menus as $child_menu) {
+            if ($child_menu[$pid_field] === $pid) {
+                $item = [
+                    $id_field => $child_menu[$id_field],
+                ];
+                foreach ($child_menu as $key => $val) {
+                    if (empty($save_field) || in_array($key, $save_field, true)) {
+                        $item[$key] = $val;
+                    }
+                }
+                $item[$children_field] = [];
+                self::traverseMenuNew($menus, $item[$children_field], $child_menu[$id_field], $ext);
+                $result[] = $item;
+            }
+        }
+
+        return true;
+    }
+
     //中文字符串包含 source源字符串target要判断的是否包含的字符串
     static function hasString($source, $target)
     {
