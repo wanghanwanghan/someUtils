@@ -431,6 +431,17 @@ class control
 
     static function createRsa(string $storePath, array $conf = []): ?array
     {
+        //RSA加密解密有个填充方式padding的参数，不同编程语言之间交互，需要注意这个。
+        //padding can be one of OPENSSL_PKCS1_PADDING, OPENSSL_SSLV23_PADDING, OPENSSL_PKCS1_OAEP_PADDING,OPENSSL_NO_PADDING
+        //值得注意的是，如果选择密钥是1024bit长的（openssl genrsa -out rsa_private_key.pem 1024），那么支持加密的明文长度字节最多只能是1024/8=128byte；
+        //如果加密的padding填充方式选择的是OPENSSL_PKCS1_PADDING（这个要占用11个字节），那么明文长度最多只能就是128-11=117字节。如果超出，那么这些openssl加解密函数会返回false。
+        //这时有个解决办法，把需要加密的源字符串按少于117个长度分开为几组，在解密的时候以172个字节分为几组。
+        //其中的『少于117』（只要不大于117即可）和『172』两个数字是怎么来的，值得一说。
+        //为什么少于117就行，因为rsa encrypt后的字节长度是固定的，就是密钥长1024bit/8=128byte。因此只要encrypt不返回false，即只要不大于117个字节，那么返回加密后的都是128byte。
+        //172是因为什么？因为128个字节base64_encode后的长度固定是172。
+        //这里顺便普及下base64_encode。encode的长度是和原文长度有个计算公式：
+        //$len2 = $len1%3 >0 ? (floor($len1/3)*4 + 4) : ($len1*4/3);
+
         return str::createRsa($storePath, $conf);
     }
 

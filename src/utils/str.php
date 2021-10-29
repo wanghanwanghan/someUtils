@@ -171,19 +171,15 @@ class str
     }
 
     //字符串转utf8
-    static function str2Utf8($str, $addType = [])
+    static function str2Utf8(string $str, array $addType = []): ?string
     {
         $type = ['ASCII', 'UTF-8', 'GB2312', 'GBK', 'BIG5'];
 
-        if (!empty($addType)) {
-            foreach ($addType as $one) {
-                array_push($type, $one);
-            }
-        }
+        empty($addType) ?: $type = array_merge($type, $addType);
 
         $type = mb_detect_encoding($str, $type);
 
-        if ($type == 'UTF-8') {
+        if ($type === 'UTF-8') {
             return $str;
         } else {
             return mb_convert_encoding($str, 'UTF-8', $type);
@@ -203,7 +199,9 @@ class str
         //openssl_get_md_methods() 的返回值是可以使用的加密方法列表
         !empty($conf['digest_alg']) ?: $conf['digest_alg'] = 'SHA512';
         //指定应该使用多少位来生成私钥
-        !empty($conf['private_key_bits']) ?: $conf['private_key_bits'] = '4096';
+        !empty($conf['private_key_bits']) ?
+            $conf['private_key_bits'] = $conf['private_key_bits'] - 0 :
+            $conf['private_key_bits'] = 4096;
         //OPENSSL_KEYTYPE_DSA OPENSSL_KEYTYPE_DH OPENSSL_KEYTYPE_RSA OPENSSL_KEYTYPE_EC
         !empty($conf['private_key_type']) ?: $conf['private_key_type'] = OPENSSL_KEYTYPE_RSA;
 
