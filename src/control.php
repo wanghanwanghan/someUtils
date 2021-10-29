@@ -456,4 +456,11 @@ class control
         return arr::binarySearch($find, $arr, $startIndex, $indexTotal);
     }
 
+    //SHA256WithRSA MD5WithRSA
+    static function xxxWithRsa(string $pem, string $str, int $method, string $priOrPub = 'pri'): ?string
+    {
+        return str::xxxWithRsa($pem, $str, $method, $priOrPub);
+    }
+
+
 }

@@ -234,5 +234,18 @@ class str
         ];
     }
 
+    //SHA256WithRSA MD5WithRSA
+    static function xxxWithRsa(string $pem, string $str, int $method, string $priOrPub = 'pri'): ?string
+    {
+        $priOrPub = strtolower($priOrPub);
+
+        $priOrPub === 'pri' ?
+            $pkeyid = openssl_pkey_get_private($pem) :
+            $pkeyid = openssl_pkey_get_public($pem);
+
+        openssl_sign($str, $signature, $pkeyid, $method);//OPENSSL_ALGO_SHA256 OPENSSL_ALGO_MD5
+
+        return base64_encode($signature);
+    }
 
 }
