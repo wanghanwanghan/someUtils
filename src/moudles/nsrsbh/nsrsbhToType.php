@@ -77,6 +77,12 @@ class nsrsbhToType
         ['id' => 47, 'pid' => 11, 'code' => '9', 'name' => '其他'],
 
         ['id' => 48, 'pid' => 12, 'code' => '1', 'name' => '不再具体划分机构类别（统一用1表示）'],
+
+        ['id' => 49, 'pid' => 0, 'code' => 'G', 'name' => '境外非政府组织代表机构'],
+        ['id' => 50, 'pid' => 0, 'code' => 'J', 'name' => '业主委员会'],
+        ['id' => 51, 'pid' => 0, 'code' => 'M', 'name' => '民办非企业单位'],
+        ['id' => 52, 'pid' => 0, 'code' => 'Q', 'name' => '基层侨联'],
+        ['id' => 53, 'pid' => 0, 'code' => 'S', 'name' => '司法鉴定机构'],
     ];
 
     private $nsrsbh;
