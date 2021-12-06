@@ -109,19 +109,35 @@ class str
     }
 
     //aes加密
-    static function aesEncode($str, $salt = __CLASS__, $method = 128)
+    static function aesEncode($str, $salt = __CLASS__, $method = 128, $mode = 'hex'): string
     {
         $method === 128 ? $method = 'AES-128-ECB' : $method = 'AES-256-ECB';
 
-        return bin2hex(openssl_encrypt($str, $method, $salt, OPENSSL_RAW_DATA));
+        if (strtolower($mode) === 'hex') {
+            $str = bin2hex(openssl_encrypt($str, $method, $salt, OPENSSL_RAW_DATA));
+        } elseif (strtolower($mode) === 'base64') {
+            $str = base64_encode(openssl_encrypt($str, $method, $salt, OPENSSL_RAW_DATA));
+        } else {
+            $str = '';
+        }
+
+        return $str;
     }
 
     //aes解密
-    static function aesDecode($str, $salt = __CLASS__, $method = 128)
+    static function aesDecode($str, $salt = __CLASS__, $method = 128, $mode = 'hex')
     {
         $method === 128 ? $method = 'AES-128-ECB' : $method = 'AES-256-ECB';
 
-        return openssl_decrypt(pack("H*", $str), $method, $salt, OPENSSL_RAW_DATA);
+        if (strtolower($mode) === 'hex') {
+            $str = openssl_decrypt(pack("H*", $str), $method, $salt, OPENSSL_RAW_DATA);
+        } elseif (strtolower($mode) === 'base64') {
+            $str = openssl_decrypt(base64_decode($str), $method, $salt, OPENSSL_RAW_DATA);
+        } else {
+            $str = '';
+        }
+
+        return $str;
     }
 
     static function rsaEncrypt(string $str = '', string $key = '', string $use = 'pub', string $mark = '_'): ?string

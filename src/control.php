@@ -335,15 +335,15 @@ class control
     }
 
     //aes加密
-    static function aesEncode($str, $salt = __CLASS__, $method = 128)
+    static function aesEncode($str, $salt = __CLASS__, $method = 128, $mode = 'hex'): string
     {
-        return str::aesEncode($str, $salt, $method);
+        return str::aesEncode($str, $salt, $method, $mode);
     }
 
     //aes解密
-    static function aesDecode($str, $salt = __CLASS__, $method = 128)
+    static function aesDecode($str, $salt = __CLASS__, $method = 128, $mode = 'hex')
     {
-        return str::aesDecode($str, $salt, $method);
+        return str::aesDecode($str, $salt, $method, $mode);
     }
 
     //写log
