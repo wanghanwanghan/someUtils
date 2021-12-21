@@ -473,5 +473,10 @@ class control
         return str::xxxWithRsa($pem, $str, $method, $priOrPub);
     }
 
+    static function colorInverse($hex_color): string
+    {
+        return img::colorInverse($hex_color);
+    }
+
 
 }
